@@ -1,24 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mYD-8e-DbQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Фильмы-->
+        <scene sceneID="7AE-IM-efg">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="6aQ-YD-8ZC" customClass="FilmsVC" customModule="Kinopoisk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R8B-8d-DUD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilmCell" rowHeight="120" id="YGq-mz-aog" customClass="FilmCell" customModule="Kinopoisk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YGq-mz-aog" id="lIa-Mn-aiN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Побег из шоушенка" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMc-au-GPR">
+                                            <rect key="frame" x="16" y="23" width="263" height="21.5"/>
+                                            <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.196" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw1-Xi-hGT">
+                                            <rect key="frame" x="309" y="23" width="50" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="EYg-7H-vXp"/>
+                                                <constraint firstAttribute="height" constant="20" id="pXe-xl-D63"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" red="0.34303858132282555" green="0.59723562560558374" blue="0.12864937105567495" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Shawshank Redemption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXU-Q9-mm7">
+                                            <rect key="frame" x="16" y="59.5" width="343" height="44.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="PMc-au-GPR" firstAttribute="top" secondItem="lIa-Mn-aiN" secondAttribute="topMargin" constant="12" id="24O-lM-U1k"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="VXU-Q9-mm7" secondAttribute="bottom" constant="5" id="8M5-fl-BPv"/>
+                                        <constraint firstItem="VXU-Q9-mm7" firstAttribute="top" secondItem="PMc-au-GPR" secondAttribute="bottom" constant="15" id="LVx-07-jQY"/>
+                                        <constraint firstItem="uw1-Xi-hGT" firstAttribute="trailing" secondItem="lIa-Mn-aiN" secondAttribute="trailingMargin" id="LiJ-vO-6U0"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VXU-Q9-mm7" secondAttribute="trailing" id="Tf5-fl-odl"/>
+                                        <constraint firstItem="PMc-au-GPR" firstAttribute="leading" secondItem="lIa-Mn-aiN" secondAttribute="leadingMargin" id="Ywz-cM-zSe"/>
+                                        <constraint firstItem="VXU-Q9-mm7" firstAttribute="leading" secondItem="lIa-Mn-aiN" secondAttribute="leadingMargin" id="htK-ec-oWc"/>
+                                        <constraint firstItem="uw1-Xi-hGT" firstAttribute="trailing" secondItem="lIa-Mn-aiN" secondAttribute="trailingMargin" id="kLT-4i-pSf"/>
+                                        <constraint firstItem="uw1-Xi-hGT" firstAttribute="leading" secondItem="PMc-au-GPR" secondAttribute="trailing" constant="30" id="o63-vu-pN3"/>
+                                        <constraint firstItem="uw1-Xi-hGT" firstAttribute="top" secondItem="PMc-au-GPR" secondAttribute="top" id="zC0-g9-s5i"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="localisedNameLbl" destination="PMc-au-GPR" id="kiF-oi-OuY"/>
+                                    <outlet property="originalNameLbl" destination="VXU-Q9-mm7" id="d6O-ws-AO1"/>
+                                    <outlet property="ratingLbl" destination="uw1-Xi-hGT" id="sPB-nV-L1i"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6aQ-YD-8ZC" id="k45-Hg-Pik"/>
+                            <outlet property="delegate" destination="6aQ-YD-8ZC" id="VAA-Cz-n2e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Фильмы" id="FRN-JO-iza"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26x-Go-HUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="562" y="301"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b4h-5G-xji">
+            <objects>
+                <navigationController id="mYD-8e-DbQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qt2-UA-bzs">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6aQ-YD-8ZC" kind="relationship" relationship="rootViewController" id="eSB-YI-QAB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fvp-cF-Hu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-418" y="301"/>
         </scene>
     </scenes>
 </document>

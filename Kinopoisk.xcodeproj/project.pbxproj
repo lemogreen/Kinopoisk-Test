@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3AD6D544217C3A8A00C54D97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D543217C3A8A00C54D97 /* AppDelegate.swift */; };
-		3AD6D546217C3A8A00C54D97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D545217C3A8A00C54D97 /* ViewController.swift */; };
+		3AD6D546217C3A8A00C54D97 /* FilmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D545217C3A8A00C54D97 /* FilmsVC.swift */; };
 		3AD6D549217C3A8A00C54D97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6D547217C3A8A00C54D97 /* Main.storyboard */; };
 		3AD6D54B217C3A8C00C54D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6D54A217C3A8C00C54D97 /* Assets.xcassets */; };
 		3AD6D54E217C3A8C00C54D97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6D54C217C3A8C00C54D97 /* LaunchScreen.storyboard */; };
+		3AD6D559217C3D9500C54D97 /* WebImageDownloaderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D558217C3D9500C54D97 /* WebImageDownloaderExtension.swift */; };
+		3AD6D55D217C460900C54D97 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D55C217C460900C54D97 /* Films.swift */; };
+		3AD6D560217C46B600C54D97 /* FilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D55F217C46B600C54D97 /* FilmCell.swift */; };
+		3AD6D562217C472700C54D97 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6D561217C472700C54D97 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3AD6D540217C3A8A00C54D97 /* Kinopoisk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kinopoisk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD6D543217C3A8A00C54D97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3AD6D545217C3A8A00C54D97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3AD6D545217C3A8A00C54D97 /* FilmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsVC.swift; sourceTree = "<group>"; };
 		3AD6D548217C3A8A00C54D97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AD6D54A217C3A8C00C54D97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AD6D54D217C3A8C00C54D97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AD6D54F217C3A8C00C54D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AD6D558217C3D9500C54D97 /* WebImageDownloaderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageDownloaderExtension.swift; sourceTree = "<group>"; };
+		3AD6D55C217C460900C54D97 /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
+		3AD6D55F217C46B600C54D97 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
+		3AD6D561217C472700C54D97 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,58 @@
 		3AD6D542217C3A8A00C54D97 /* Kinopoisk */ = {
 			isa = PBXGroup;
 			children = (
-				3AD6D543217C3A8A00C54D97 /* AppDelegate.swift */,
-				3AD6D545217C3A8A00C54D97 /* ViewController.swift */,
+				3AD6D563217C473400C54D97 /* Helpers */,
+				3AD6D55E217C466200C54D97 /* Extensions */,
+				3AD6D557217C3AA200C54D97 /* Controller */,
+				3AD6D556217C3A9D00C54D97 /* View */,
+				3AD6D555217C3A9300C54D97 /* Model */,
 				3AD6D547217C3A8A00C54D97 /* Main.storyboard */,
 				3AD6D54A217C3A8C00C54D97 /* Assets.xcassets */,
 				3AD6D54C217C3A8C00C54D97 /* LaunchScreen.storyboard */,
 				3AD6D54F217C3A8C00C54D97 /* Info.plist */,
+				3AD6D543217C3A8A00C54D97 /* AppDelegate.swift */,
 			);
 			path = Kinopoisk;
+			sourceTree = "<group>";
+		};
+		3AD6D555217C3A9300C54D97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AD6D55C217C460900C54D97 /* Films.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3AD6D556217C3A9D00C54D97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3AD6D55F217C46B600C54D97 /* FilmCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3AD6D557217C3AA200C54D97 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3AD6D545217C3A8A00C54D97 /* FilmsVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3AD6D55E217C466200C54D97 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3AD6D558217C3D9500C54D97 /* WebImageDownloaderExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AD6D563217C473400C54D97 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AD6D561217C472700C54D97 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD6D546217C3A8A00C54D97 /* ViewController.swift in Sources */,
+				3AD6D546217C3A8A00C54D97 /* FilmsVC.swift in Sources */,
+				3AD6D562217C472700C54D97 /* Constants.swift in Sources */,
+				3AD6D55D217C460900C54D97 /* Films.swift in Sources */,
 				3AD6D544217C3A8A00C54D97 /* AppDelegate.swift in Sources */,
+				3AD6D559217C3D9500C54D97 /* WebImageDownloaderExtension.swift in Sources */,
+				3AD6D560217C46B600C54D97 /* FilmCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
