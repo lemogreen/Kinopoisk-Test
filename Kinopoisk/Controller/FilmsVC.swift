@@ -10,8 +10,9 @@ import UIKit
 
 class FilmsVC: UITableViewController {
     
-    var films: [Films.Film] = []
-
+    
+    var film = Films.Film()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -45,8 +46,30 @@ class FilmsVC: UITableViewController {
                 let decodedData = JSONString.data(using: .utf8)!
                 let decoder = JSONDecoder()
                 let films = try decoder.decode(Films.self, from: decodedData)
-                self.films = films.films
-                print(films.films[0].description)
+                FilmData.instance.films = films.films
+
+                let groupedByYear = Dictionary(grouping: FilmData.instance.films, by: { (film) -> Int in
+                    film.year
+                })
+                FilmData.instance.keys = groupedByYear.keys.sorted()
+                FilmData.instance.keys.forEach({ (key) in
+                    FilmData.instance.groupedFilms.append(groupedByYear[key]!)
+                })
+                for i in 0..<FilmData.instance.groupedFilms.count {
+                    FilmData.instance.groupedFilms[i].sort(by: { (first, second) -> Bool in
+                        guard let firstFilmUnwrappedRating = first.rating else {return true}
+                        guard let secondFilmUnwrappedRating = second.rating else {return false}
+                        
+                        if firstFilmUnwrappedRating > secondFilmUnwrappedRating {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                }
+
+                
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -58,28 +81,55 @@ class FilmsVC: UITableViewController {
     }
     
     
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return FilmData.instance.keys.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.films.count
+        return FilmData.instance.groupedFilms[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FilmCell") as? FilmCell else {
             return UITableViewCell()
         }
-        let filmForRow = films[indexPath.row]
+        let filmForRow = FilmData.instance.groupedFilms[indexPath.section][indexPath.row]
         cell.configureCell(localisedName: filmForRow.localized_name, originalName: filmForRow.name, rating: filmForRow.rating)
         return cell
         
     }
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)?.first as! HeaderView
+        headerView.yearLbl.text = String(FilmData.instance.keys[section])
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let ToDetailFilmInfoVC = storyboard?.instantiateViewController(withIdentifier: "DetailFilmInfoVC") as? DetailFilmInfoVC else {return}
+        film = FilmData.instance.groupedFilms[indexPath.section][indexPath.row]
+        ToDetailFilmInfoVC.setupData(filmData: film)
+        performSegue(withIdentifier: "ToDetailFilmInfo", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is DetailFilmInfoVC
+        {
+            let vc = segue.destination as? DetailFilmInfoVC
+            vc?.filmData = film
+        }
+    }
+    
+    
 
-    
-    
-    
-    
 
 }
 

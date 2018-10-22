@@ -26,6 +26,9 @@ class FilmCell: UITableViewCell {
     }
     
     
+    
+    
+    
     func configureCell(localisedName: String, originalName: String, rating: Double?) {
         self.localisedNameLbl.text = localisedName
         self.originalNameLbl.text = originalName

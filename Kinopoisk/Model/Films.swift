@@ -18,6 +18,16 @@ struct Films: Codable {
         let rating: Double?
         let image_url: String?
         let description: String?
+        
+        init() {
+            self.id = 0
+            self.localized_name = ""
+            self.name = ""
+            self.year = 0
+            self.rating = 0
+            self.image_url = ""
+            self.description = ""
+        }
     }
     let films: [Film]
 }
