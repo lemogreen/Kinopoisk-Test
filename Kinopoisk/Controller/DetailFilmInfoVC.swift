@@ -49,7 +49,8 @@ class DetailFilmInfoVC: UIViewController {
         if let unwrappedRating = filmData.rating {
             ratingLbl.text = String(unwrappedRating)
         } else {
-            ratingLbl.text = "Нет рейтинга"
+            ratingLbl.isHidden = true
+            
         }
         if let unwrappedDescription = filmData.description {
             descriptionLbl.text = unwrappedDescription
