@@ -10,21 +10,37 @@ import UIKit
 
 class FilmsVC: UITableViewController {
     
-    
     var film = Films.Film()
+    
+
+    lazy var refreshDataStatus: UIRefreshControl = {
+        let refreshDataStatus = UIRefreshControl()
+        refreshDataStatus.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshDataStatus.tintColor = UIColor.black
+        
+        return refreshDataStatus
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        JSONDownloader {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        JSONDownloader()
+        JSONDownloader {}
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.addSubview(self.refreshDataStatus)
     }
     
-    
-    
-    func JSONDownloader() {
+    func JSONDownloader(compleationHandler: @escaping () -> Void) {
         URLSession.shared.dataTask(with: SOURCE_URL) { (data, response, error) in
             guard error == nil else {
                 print(error as Any)
@@ -40,6 +56,7 @@ class FilmsVC: UITableViewController {
                 print("no JSON data")
                 return
             }
+            compleationHandler()
             
             do {
                 let JSONString = String(data: data, encoding: .utf8)!
@@ -47,7 +64,7 @@ class FilmsVC: UITableViewController {
                 let decoder = JSONDecoder()
                 let films = try decoder.decode(Films.self, from: decodedData)
                 FilmData.instance.films = films.films
-
+                
                 let groupedByYear = Dictionary(grouping: FilmData.instance.films, by: { (film) -> Int in
                     film.year
                 })
@@ -67,9 +84,6 @@ class FilmsVC: UITableViewController {
                         }
                     })
                 }
-
-                
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -77,60 +91,66 @@ class FilmsVC: UITableViewController {
                 print(error as Any)
                 
             }
-        }.resume()
+            }.resume()
     }
-    
-    
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return FilmData.instance.keys.count
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FilmData.instance.groupedFilms[section].count
     }
     
+    
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FilmCell") as? FilmCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FILM_CELL) as? FilmCell else {
             return UITableViewCell()
         }
         let filmForRow = FilmData.instance.groupedFilms[indexPath.section][indexPath.row]
         cell.configureCell(localisedName: filmForRow.localized_name, originalName: filmForRow.name, rating: filmForRow.rating)
         return cell
-        
     }
+    
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)?.first as! HeaderView
+        let headerView = Bundle.main.loadNibNamed(HEADER_VIEW, owner: self, options: nil)?.first as! HeaderView
         headerView.yearLbl.text = String(FilmData.instance.keys[section])
         return headerView
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let ToDetailFilmInfoVC = storyboard?.instantiateViewController(withIdentifier: "DetailFilmInfoVC") as? DetailFilmInfoVC else {return}
+        guard let ToDetailFilmInfoVC = storyboard?.instantiateViewController(withIdentifier: DETAIL_FILM_INFO) as? DetailFilmInfoVC else {return}
         film = FilmData.instance.groupedFilms[indexPath.section][indexPath.row]
         ToDetailFilmInfoVC.setupData(filmData: film)
-        performSegue(withIdentifier: "ToDetailFilmInfo", sender: nil)
+        performSegue(withIdentifier: TO_DETAIL_FILM_INFO, sender: nil)
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.destination is DetailFilmInfoVC
         {
-            let vc = segue.destination as? DetailFilmInfoVC
-            vc?.filmData = film
+            let DetailFilmInfoVC = segue.destination as? DetailFilmInfoVC
+            DetailFilmInfoVC?.filmData = film
         }
     }
     
     
-
-
 }
 
 

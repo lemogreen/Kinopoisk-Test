@@ -20,20 +20,18 @@ class FilmCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    
-    
-    
     
     func configureCell(localisedName: String, originalName: String, rating: Double?) {
         self.localisedNameLbl.text = localisedName
         self.originalNameLbl.text = originalName
         if let unwrappedRating = rating {
             self.ratingLbl.text = String(unwrappedRating)
+            self.ratingLbl.isHidden = false
+        } else {
+            self.ratingLbl.isHidden = true
         }
     }
 

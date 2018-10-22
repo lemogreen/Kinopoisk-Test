@@ -39,7 +39,7 @@ class DetailFilmInfoVC: UIViewController {
     
     func setupView() {
         if let unwrappedFilmImage = filmData.image_url {
-            filmImage.setImage(from: URL(string: unwrappedFilmImage)!, withPlaceholder: UIImage(named: "No_Image_Available"))
+            filmImage.setImage(from: URL(string: unwrappedFilmImage)!, withPlaceholder: UIImage(named: "No_Image_Available.png"))
         } else {
             filmImage.image = UIImage(named: "No_Image_Available.png")
         }
@@ -48,11 +48,13 @@ class DetailFilmInfoVC: UIViewController {
         yearLbl.text = String(filmData.year)
         if let unwrappedRating = filmData.rating {
             ratingLbl.text = String(unwrappedRating)
+        } else {
+            ratingLbl.text = "Нет рейтинга"
         }
         if let unwrappedDescription = filmData.description {
             descriptionLbl.text = unwrappedDescription
         } else {
-            descriptionLbl.text = "нет описания"
+            descriptionLbl.text = " Нет описания"
             descriptionLbl.sizeToFit()
         }
     }
